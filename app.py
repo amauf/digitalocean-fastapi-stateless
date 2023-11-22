@@ -8,3 +8,7 @@ app = FastAPI()
 @app.get("/")
 async def read_root():
     return FileResponse('template/index.html')
+
+@app.get("/test")
+async def test():
+    return "hello world"
