@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from starlette.responses import FileResponse
 
+from youtube_transcript_api import YouTubeTranscriptApi
+from youtube_transcript_api.formatters import TextFormatter
 
 app = FastAPI()
 
@@ -11,4 +13,7 @@ async def read_root():
 
 @app.get("/test")
 async def test():
-    return "hello world"
+    transcript = YouTubeTranscriptApi.get_transcript("BD19KDWXob4", languages=['de', 'en'])
+    formatter = TextFormatter()
+    text_formatted = formatter.format_transcript(transcript)
+    return text_formatted
