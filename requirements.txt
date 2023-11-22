@@ -1,4 +1,4 @@
 fastapi
 uvicorn
 gunicorn
-YouTubeTranscriptApi
+youtube-transcript-api
