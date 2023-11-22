@@ -6,14 +6,13 @@ from youtube_transcript_api.formatters import TextFormatter
 
 app = FastAPI()
 
-
 @app.get("/")
 async def read_root():
     return FileResponse('template/index.html')
 
-@app.get("/test")
-async def test():
-    transcript = YouTubeTranscriptApi.get_transcript("BD19KDWXob4", languages=['de', 'en'])
+@app.get("/transcript/{video_id}")
+async def transcript(video_id):
+    transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=['de', 'en'])
     formatter = TextFormatter()
     text_formatted = formatter.format_transcript(transcript)
     return text_formatted
